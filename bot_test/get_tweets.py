@@ -53,6 +53,11 @@ class Twitter_main():
         # response = client.get_users_tweets(user_id,max_results=1)
 
         response = self.api.user_timeline(screen_name=user_id, count=30, exclude_replies=True, include_rts=False)
+        print("------------------------------------------------------------------")
+        print("------------------------------------------------------------------")
+        if response == []:
+            print("No tweets")
+            return None
         # exclude_replies
         # |exclude_replies|
         # include_rts
@@ -65,7 +70,7 @@ class Twitter_main():
         return_image = ""
         return_url = ""
         return_favourite_count = 0
-        for tweet in response:
+        for tweet in response: # TODO: make it check from the last tweet instead, so -1 or something, so if multiple tweets it can still work )
             if str(tweet.id) == last_tweet_id:
                 print("No new tweet")
                 return None
@@ -94,9 +99,11 @@ class Twitter_main():
                     # Print the path to the saved file
                 print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
-                break
+
             
-        return return_image, return_url, return_favourite_count, tweet.id
+                return return_image, return_url, return_favourite_count, tweet.id
+            else:
+                return None
 
     # async def get_art(self,user_id, last_tweet_id):
         

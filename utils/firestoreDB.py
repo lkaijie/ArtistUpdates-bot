@@ -103,7 +103,20 @@ class FirestoreDB():
         else:
             print("Document does not exist")
             last_tweet_id = await self.twitter_main.get_last_id(artist_id)
-            doc_ref.set({"last_tweet_id": last_tweet_id})
+            if last_tweet_id == None:
+                doc_ref.set({"last_tweet_id": "0"})
+            else:
+                doc_ref.set({"last_tweet_id": last_tweet_id})
+    
+    async def update_last_tweet_id(self, guild_id, artist_id, last_tweet_id):
+        '''Updates the last tweet id of the artist'''
+        guild_ref = self.db.collection("Guilds").document(guild_id)
+        artist_ref = guild_ref.collection("twitter_list").document(artist_id)
+        artist_doc = artist_ref.get()
+        if artist_doc.exists:
+            artist_ref.update({"last_tweet_id": last_tweet_id})
+        else:
+            print("Artist does not exist")
 
 async def main():
     testing = FirestoreDB()
