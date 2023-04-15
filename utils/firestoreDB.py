@@ -79,6 +79,16 @@ class FirestoreDB():
                         return_list.append(d.id)
         return return_list
     
+    async def get_pfp(self, guild_id, artist_id) -> str:
+        '''Returns the profile picture of the artist'''
+        guild_ref = self.db.collection("Guilds").document(guild_id)
+        artist_ref = guild_ref.collection("twitter_list").document(artist_id)
+        artist_doc = artist_ref.get()
+        if artist_doc.exists:
+            return artist_doc.to_dict().get("profile_pic")
+        else:
+            return None
+
 
     async def get_last_work(self, guild_id, artist_id) -> dict:
         '''Returns the last work of the artist'''
@@ -103,10 +113,12 @@ class FirestoreDB():
         else:
             print("Document does not exist")
             last_tweet_id = await self.twitter_main.get_last_id(artist_id)
+            pfp_url = await self.twitter_main.get_pfp(artist_id)
+            
             if last_tweet_id == None:
-                doc_ref.set({"last_tweet_id": "0"})
+                doc_ref.set({"last_tweet_id": "0","profile_pic": pfp_url}) # if multiple attributes plz do one line
             else:
-                doc_ref.set({"last_tweet_id": last_tweet_id})
+                doc_ref.set({"last_tweet_id": last_tweet_id,"profile_pic": pfp_url})
     
     async def update_last_tweet_id(self, guild_id, artist_id, last_tweet_id):
         '''Updates the last tweet id of the artist'''

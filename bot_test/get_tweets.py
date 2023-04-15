@@ -40,6 +40,9 @@ class Twitter_main():
     async def get_new_tweet(self,user_id, last_tweet_id):
         pass
         
+    async def get_pfp(self, user_id):
+        pfp_url = self.api.get_user(screen_name=user_id).profile_image_url
+        return pfp_url
 
     async def get_art(self,user_id, last_tweet_id):
         

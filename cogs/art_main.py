@@ -26,6 +26,14 @@ class art_main(commands.Cog):
 
     @commands.slash_command(name="art_list",description="Shows list of tracked users")
     async def art_list(self, ctx: discord.ApplicationContext):
+
+        tracked_users = await self.db.get_twitter_list(str(ctx.guild.id))
+
+
+
+
+
+
         embed = discord.Embed(title="Tracked Twitter Users", color=0xf1c232, 
             description="""
                 `@askziye`
@@ -42,6 +50,10 @@ class art_main(commands.Cog):
         if value == True:
             await ctx.respond("Setting up server")
             await ctx.respond("Server added to database")
+        else:
+            await ctx.respond("Server already exists in database")
+
+
     # just a test command
     @commands.slash_command(name="add",description="add twitter user")
     @option("username", description="Example: @(askziye)")
@@ -54,6 +66,7 @@ class art_main(commands.Cog):
         await ctx.respond(
             f"Added {username} to database."
         )
+        # change this to embed msg with user profile pic and name with clickable link to twitter
 
 def setup(bot):
     bot.add_cog(art_main(bot))

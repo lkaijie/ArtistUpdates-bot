@@ -39,7 +39,7 @@ class check_updates(commands.Cog):
 
 
     # prob have to get channel id from db? idk AHHHs
-    @tasks.loop(seconds=60)
+    @tasks.loop(minutes=10)
     async def update_loop(self):
         guilds = await self.db.get_guilds()
         for guild in guilds:
@@ -60,6 +60,14 @@ class check_updates(commands.Cog):
                     embed = discord.Embed(title="twitter link", url=new_work[1], color=0x00ff00)
                     embed.description = "likes: " + str(new_work[2])
                     embed.set_image(url=img) # Set the image URL of the embed
+                    embed.set_footer(text="Art by: " + artist)
+                    try:
+                        pfp_url = last_work["profile_pic"]
+                    except:
+                        pfp_url = "https://em-content.zobj.net/thumbs/120/google/350/umbrella-with-rain-drops_2614.png"
+                    embed.set_author(name="New art from " + artist, url=new_work[1], icon_url=pfp_url)
+                    # embed.set_thumbnail(url="https://pbs.twimg.com/profile_images/1410000")
+                    # embed.set_thumbnail(url=f"https://twitter.com/{artist}/photo")
                     try:
                         await send_channel.send(embed=embed)
                     except:
