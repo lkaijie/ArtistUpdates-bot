@@ -27,6 +27,6 @@ jobs:
           MY_SECRET: ${{secrets.CONFIG}}
 
       - name: Start bot
-        run: timeout 2s python bot.py
+        run: timeout 20s python bot.py
       # - name: Run tests
       #   run: pytest
