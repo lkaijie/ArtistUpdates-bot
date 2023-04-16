@@ -20,7 +20,11 @@ jobs:
           pip install -r requirements.txt
       - name: Set up config file
         run: |
-          echo '${{ secrets.CONFIG }}' | sed 's/"/\\"/g' > config.py
+            echo "$MY_SECRET" >> config.py
+            cat config.py
+        shell: bash
+        env:
+          MY_SECRET: ${{secrets.CONFIG}}
 
       - name: Start bot
         run: python bot.py
