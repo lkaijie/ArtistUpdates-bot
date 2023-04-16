@@ -20,7 +20,6 @@ jobs:
           pip install -r requirements.txt
       - name: Set up config file
         run: |
-          # echo "${{ secrets.CONFIG }}" > config.py
           echo '"${{ secrets.CONFIG }}"' > config.py
 
       - name: Start bot
