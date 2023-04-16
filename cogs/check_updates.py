@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands, tasks
 from discord import option
 from discord.ui import View, button
-from ignore.test import Test
+# from ignore.test import Test
 from discord.commands import SlashCommandGroup
 from utils.firestoreDB import FirestoreDB
 from utils import get_tweets

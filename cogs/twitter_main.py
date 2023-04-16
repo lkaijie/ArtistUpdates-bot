@@ -5,7 +5,7 @@ from discord.ext import commands
 from discord import option
 from discord.ui import View, button
 import config
-from ignore.test import Test
+# from ignore.test import Test
 # import slash command group
 from discord.commands import SlashCommandGroup
 

@@ -4,7 +4,6 @@ import discord
 from discord.ext import commands
 from discord import option
 from discord.ui import View, button
-from ignore.test import Test
 
 class Info(commands.Cog):
     def __init__(self, bot):
