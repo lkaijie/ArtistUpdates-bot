@@ -7,7 +7,7 @@ import asyncio
 
 # Add the root directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from bot_test import get_tweets
+from utils import get_tweets
 
 # Import the config module from the root directory
 import config

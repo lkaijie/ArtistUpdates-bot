@@ -11,7 +11,10 @@ test/
 
 bot_test/secret.txt
 config.py
-
+imgs/
+bot_test/
+imgs/
+ignore/
 
 
 # Byte-compiled / optimized / DLL files

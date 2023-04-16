@@ -4,10 +4,10 @@ import discord
 from discord.ext import commands, tasks
 from discord import option
 from discord.ui import View, button
-from utils.test import Test
+from ignore.test import Test
 from discord.commands import SlashCommandGroup
 from utils.firestoreDB import FirestoreDB
-from bot_test import get_tweets
+from utils import get_tweets
 
 class check_updates(commands.Cog):
     def __init__(self, bot):

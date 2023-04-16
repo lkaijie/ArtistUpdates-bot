@@ -1,3 +1,0 @@
-await self.bot.wait_until_ready() # have this to wait until the bot is ready
-
-@coruitine.after_loop/before_loop # before the loop starts and after the loop ends
