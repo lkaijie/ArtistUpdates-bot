@@ -19,7 +19,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Set up config file
-        run: echo "${{ secrets.CONFIG }}" > config.py
+        run: |
+          echo "${{ secrets.CONFIG }}" > config.py
       - name: Start bot
         run: python bot.py
       # - name: Run tests
