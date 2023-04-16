@@ -26,7 +26,14 @@
 #         env:
 #           MY_SECRET: ${{secrets.CONFIG}}
 
+<<<<<<< HEAD
 #       - name: Start bot
 #         run: timeout 2s python bot.py
 #       # - name: Run tests
 #       #   run: pytest
+=======
+      - name: Start bot
+        run: timeout 20s python bot.py
+      # - name: Run tests
+      #   run: pytest
+>>>>>>> 74c71a7621b226d16c697c7531bcf0053db85dd6
