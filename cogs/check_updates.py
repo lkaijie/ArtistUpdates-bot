@@ -54,9 +54,9 @@ class check_updates(commands.Cog):
                 new_work = await self.twitter_main.get_art(artist, last_work_id) #
                 print("artist: " + artist)
                 print("new work: " + str(new_work))
-                if new_work is not None and new_work != []:
+                if new_work is not None and new_work != [] and new_work != "No new tweet":
                     img = new_work[0]
-                    await self.db.update_last_tweet_id(guild, artist, new_work[3])
+                    await self.db.update_last_tweet_id(guild, artist, str(new_work[3])) # new work3 is the tweet id
                     embed = discord.Embed(title="twitter link", url=new_work[1], color=0x00ff00)
                     embed.description = "likes: " + str(new_work[2])
                     embed.set_image(url=img) # Set the image URL of the embed
@@ -70,8 +70,9 @@ class check_updates(commands.Cog):
                     # embed.set_thumbnail(url=f"https://twitter.com/{artist}/photo")
                     try:
                         await send_channel.send(embed=embed)
-                    except:
+                    except Exception as e:
                         print("error sending embed(likely bot not setuped)")
+                        print(e)
 
 
 

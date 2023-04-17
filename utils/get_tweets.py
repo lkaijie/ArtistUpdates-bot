@@ -74,8 +74,9 @@ class Twitter_main():
         return_url = ""
         return_favourite_count = 0
         for tweet in response: # TODO: make it check from the last tweet instead, so -1 or something, so if multiple tweets it can still work )
-            if str(tweet.id) == last_tweet_id:
-                print("No new tweet")
+            
+            if str(tweet.id) == str(last_tweet_id):
+                print("No new tweet(top)")
                 return None
             print(last_tweet_id)
             print("-------------------")
@@ -90,7 +91,7 @@ class Twitter_main():
             # Check if the tweet has any images
             if 'media' in tweet.entities:
                 if tweet.id == last_tweet_id:
-                    print("No new tweet")
+                    print("No new tweet(bot)")
                     return None
                 for index, image in enumerate(tweet.entities['media']):
                     # Print the image URL
@@ -104,9 +105,9 @@ class Twitter_main():
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
 
             
-                return return_image, return_url, return_favourite_count, tweet.id
-            else:
-                return None
+                return return_image, return_url, return_favourite_count, str(tweet.id)
+            
+        return None
 
     # async def get_art(self,user_id, last_tweet_id):
         
