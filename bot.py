@@ -26,9 +26,9 @@ db = FirestoreDB()
 bot.load_extension("cogs.info")  # Load info cog
 bot.load_extension("cogs.twitter_main")  # Load twitter cog
 bot.load_extension("cogs.art_main")  # Load art cog
+bot.load_extension("cogs.check_updates")  # Load test cog
 art_main = bot.get_cog("art_main")
 art_main.db = db
-bot.load_extension("cogs.check_updates")  # Load test cog
 check_updates = bot.get_cog("check_updates")
 check_updates.db = db
 

@@ -100,6 +100,16 @@ class FirestoreDB():
         else:
             return None
         
+    async def delete_twitter_artist(self, guild_id, artist_id):
+        '''Deletes the artist from the database'''
+        guild_ref = self.db.collection("Guilds").document(guild_id)
+        artist_ref = guild_ref.collection("twitter_list").document(artist_id)
+        artist_doc = artist_ref.get()
+        if artist_doc.exists:
+            artist_ref.delete()
+        else:
+            print("Artist does not exist")
+
 
     async def add_twitter_artist(self, guild_id, artist_id):
         '''adds a twitter artist to the database with the last tweet id'''
@@ -119,6 +129,8 @@ class FirestoreDB():
                 doc_ref.set({"last_tweet_id": "0","profile_pic": pfp_url}) # if multiple attributes plz do one line
             else:
                 doc_ref.set({"last_tweet_id": last_tweet_id,"profile_pic": pfp_url})
+            return pfp_url
+                
     
     async def update_last_tweet_id(self, guild_id, artist_id, last_tweet_id):
         '''Updates the last tweet id of the artist'''

@@ -16,7 +16,7 @@ bot_test/
 imgs/
 ignore/
 
-
+tempCodeRunnerFile.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

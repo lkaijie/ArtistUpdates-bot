@@ -9,6 +9,9 @@ from discord.commands import SlashCommandGroup
 from utils.firestoreDB import FirestoreDB
 from utils import get_tweets
 
+# class PaginationView(discord.ui.View)
+
+
 class art_main(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -28,20 +31,12 @@ class art_main(commands.Cog):
     async def art_list(self, ctx: discord.ApplicationContext):
 
         tracked_users = await self.db.get_twitter_list(str(ctx.guild.id))
-
-
-
-
-
-
         embed = discord.Embed(title="Tracked Twitter Users", color=0xf1c232, 
-            description="""
-                `@askziye`
-                `@askziye`
-                `@askziye`
-                `@askziye`
+            description="""List of tracked twitter users.
             """)
         embed.set_author(name="Qbot", icon_url=self.bot.user.avatar.url)
+        for user in tracked_users:
+            embed.add_field(name=f"@{user}", value=f"https://twitter.com/{user}", inline=False)
         await ctx.respond(embed=embed)  
 
     @commands.slash_command(name="setup",description="Setup and add Server to database")
@@ -62,11 +57,27 @@ class art_main(commands.Cog):
         ctx: discord.ApplicationContext,
         username: str,
     ):
-        await self.db.add_twitter_artist(str(ctx.guild.id), str(username))
-        await ctx.respond(
-            f"Added {username} to database."
-        )
+        pfp = await self.db.add_twitter_artist(str(ctx.guild.id), str(username))
+        # await ctx.respond(
+        #     f"Added {username} to database."
+        # )
+        print(pfp)
+        embed = discord.Embed(color=0xf1c232)
+        embed.set_author(name=f"Added @{username} to database.", url=f"https://twitter.com/{username}",icon_url=pfp)
+        await ctx.respond(embed=embed)
         # change this to embed msg with user profile pic and name with clickable link to twitter
+
+    @commands.slash_command(name="delete",description="remove twitter user")
+    @option("username", description="Example: @(askziye)")
+    async def remove(
+        self,
+        ctx: discord.ApplicationContext,
+        username: str,
+    ):
+        await self.db.delete_twitter_artist(str(ctx.guild.id), str(username))
+        await ctx.respond(
+            f"Deleted {username} from database."
+        )
 
 def setup(bot):
     bot.add_cog(art_main(bot))

@@ -97,10 +97,6 @@ class Twitter_main():
                     # Print the image URL
                     print(image['media_url'])
                     return_image = image['media_url']
-                    # Retrieve the image data using the requests library
-                    # Save the image data to a file
-    
-                    # Print the path to the saved file
                 print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
 
