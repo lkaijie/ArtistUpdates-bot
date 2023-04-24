@@ -1,5 +1,6 @@
 # ArtistUpdates-bot
 Track your favorite twitter artist and get notified when they post.
+![image](https://user-images.githubusercontent.com/94023052/233753404-8a4ddc9e-b5f6-49f1-89d2-bb69a1a26524.png)
 
 
 # Why?
