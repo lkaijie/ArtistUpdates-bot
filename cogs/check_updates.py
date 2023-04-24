@@ -60,7 +60,8 @@ class check_updates(commands.Cog):
                     embed = discord.Embed(title="twitter link", url=new_work[1], color=0x00ff00)
                     embed.description = "likes: " + str(new_work[2])
                     embed.set_image(url=img) # Set the image URL of the embed
-                    embed.set_footer(text="Art by: " + artist)
+                    date_posted = new_work[4]
+                    embed.set_footer(text="Date posted: " + date_posted)
                     try:
                         pfp_url = last_work["profile_pic"]
                     except:
@@ -68,6 +69,11 @@ class check_updates(commands.Cog):
                     embed.set_author(name="New art from " + artist, url=new_work[1], icon_url=pfp_url)
                     # embed.set_thumbnail(url="https://pbs.twimg.com/profile_images/1410000")
                     # embed.set_thumbnail(url=f"https://twitter.com/{artist}/photo")
+
+
+                    #TODO: give date posted
+                    
+
                     try:
                         await send_channel.send(embed=embed)
                     except Exception as e:

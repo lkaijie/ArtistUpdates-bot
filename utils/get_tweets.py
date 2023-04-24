@@ -99,9 +99,10 @@ class Twitter_main():
                     return_image = image['media_url']
                 print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
+                date_posted = str(tweet.created_at)
 
             
-                return return_image, return_url, return_favourite_count, str(tweet.id)
+                return return_image, return_url, return_favourite_count, str(tweet.id), date_posted
             
         return None
 
