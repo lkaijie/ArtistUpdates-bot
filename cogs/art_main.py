@@ -39,6 +39,8 @@ class art_main(commands.Cog):
             embed.add_field(name=f"@{user}", value=f"https://twitter.com/{user}", inline=False)
         await ctx.respond(embed=embed)  
 
+        # pagination setup TODO
+
     @commands.slash_command(name="setup",description="Setup and add Server to database")
     async def setup(self, ctx: discord.ApplicationContext):
         value = await self.db.add_guild(str(ctx.guild.id), ctx.guild.name, ctx.channel_id)
@@ -47,6 +49,17 @@ class art_main(commands.Cog):
             await ctx.respond("Server added to database")
         else:
             await ctx.respond("Server already exists in database")
+
+    
+    @commands.slash_command(name="set", description="Set the default channel to send updates to")
+    async def set(self, ctx):
+        # set the default channel to send updates to
+        await self.db.set_channel(str(ctx.guild_id), str(ctx.channel_id))
+        #  print channel name
+        await ctx.respond(f"Set default channel to {ctx.channel.name}")
+        
+
+
 
 
     # just a test command

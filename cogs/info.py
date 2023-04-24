@@ -61,11 +61,15 @@ class Info(commands.Cog):
             title="ArtistUpdate-Bot",
             color=0x3083e3,
             timestamp=datetime.datetime.utcnow(),
-            description=f"Thanks for using MangaUpdates bot! Any questions can be brought up in the support server. This bot is also open-source! All code can be found on GitHub (Please leave a star ⭐ if you enjoy the bot).\n\n**Server Count:** {len(self.bot.guilds)}\n**Bot Users:** {botUsers}\n**Bot Uptime:** {uptime}"
+            description=f"Thanks for using. This bot is also open-source! All code can be found on GitHub (Please leave a star ⭐ if you enjoy the bot).\n\n**Server Count:** {len(self.bot.guilds)}\n**Bot Users:** {botUsers}\n**Bot Uptime:** {uptime}"
         )
         botinfo.set_author(name="ArtistUpdate-Bot", icon_url=self.bot.user.avatar.url)
         await ctx.respond(embed=botinfo)
 
+    @commands.slash_command(name="stats", description="Displays stats")
+    async def stats(self, ctx):
+        # guess get total artits tracked and also unique artist tracked
+        pass
 
     @commands.slash_command(name="testing1", description="Pong! Displays the ping")
     async def ping(self, ctx):
@@ -80,7 +84,13 @@ class Info(commands.Cog):
         embed.set_author(name="yoneyamai", icon_url="https://pbs.twimg.com/profile_images/1155680462464942081/JBCvjutU_400x400.jpg")
         await ctx.respond(embed=embed)
 
-
+    # @commands.slash_command(name="set", description="Set the default channel to send updates to")
+    # async def set(self, ctx):
+    #     # set the default channel to send updates to
+    #     str(ctx.guild_id)
+    #     str(ctx.channel_id)
+    #     # firebase instance and set the channel id implement when i am not sleepy g9
+    #     pass
     # @commands.slash_command(name="testing",description="testing command from cog")  # Not passing in guild_ids creates a global slash command.
     # async def hiqwe(self, ctx: discord.ApplicationContext, inputs: discord.Option(str, "What do you want to say?")):
     #     await ctx.respond("Hi, this is a global slash command from a cog!"+inputs)

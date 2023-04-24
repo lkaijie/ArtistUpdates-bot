@@ -131,6 +131,14 @@ class FirestoreDB():
                 doc_ref.set({"last_tweet_id": last_tweet_id,"profile_pic": pfp_url})
             return pfp_url
                 
+    async def set_channel(self, guild_id, channel_id):
+        '''Sets the channel id for the guild'''
+        guild_ref = self.db.collection("Guilds").document(guild_id)
+        guild_doc = guild_ref.get()
+        if guild_doc.exists:
+            guild_ref.update({"channel_id": channel_id})
+        else:
+            print("Guild does not exist")
     
     async def update_last_tweet_id(self, guild_id, artist_id, last_tweet_id):
         '''Updates the last tweet id of the artist'''
