@@ -1,5 +1,20 @@
-# ArtistUpdates-bot
-Track your favorite twitter artist and get notified when they post.
+
+</br>
+    <div align="center">
+        <img src="https://cdn.discordapp.com/avatars/1094845575368806432/3d1eb05f18c16cf6fb7370b27eea47ab.webp?size=128">
+        <h2>ArtistUpdates-bot</h3>
+        <span>A Discord bot for keeping track of your favourite artists</span>
+    </div>
+
+
+# About
+ArtistUpdates is a simple bot created to keep track and notify users when a tracked artist posts new media, ignoring all retweets.
+
+Created using Python and Firebase, mainly utilizing the tweepy and pycord libraries
+
+### The bot can be invited [here](https://discord.com/api/oauth2/authorize?client_id=1094845575368806432&permissions=139586750528&scope=bot%20applications.commands)
+
+## Example output
 ![image](https://user-images.githubusercontent.com/94023052/233753404-8a4ddc9e-b5f6-49f1-89d2-bb69a1a26524.png)
 
 
