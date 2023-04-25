@@ -34,10 +34,10 @@ class FirestoreDB():
         '''Adds a guild to the database'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         if guild_ref.get().exists:
-            print("Guild already exists")
+            # print("Guild already exists")
             return False
         else:
-            print("Guild does not exist")
+            # print("Guild does not exist")
             artist_ref = guild_ref.collection("twitter_list")
             artist_ref2 = guild_ref.collection("pixiv_list")
             guild_ref.set({

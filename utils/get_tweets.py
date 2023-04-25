@@ -45,29 +45,12 @@ class Twitter_main():
         return pfp_url
 
     async def get_art(self,user_id, last_tweet_id):
-        
-        # Get User's Tweets
-
-        # This endpoint/method returns Tweets composed by a single user, specified by
-        # the requested user ID
-
-        # user_id = "askziye"
-
-        # response = client.get_users_tweets(user_id,max_results=1)
-
         response = self.api.user_timeline(screen_name=user_id, count=30, exclude_replies=True, include_rts=False)
-        print("------------------------------------------------------------------")
-        print("------------------------------------------------------------------")
+        # print("------------------------------------------------------------------")
+        # print("------------------------------------------------------------------")
         if response == []:
             print("No tweets")
             return None
-        # exclude_replies
-        # |exclude_replies|
-        # include_rts
-
-        # use stream lsitener instead
-
-        # By default, only the ID and text fields of each Tweet will be returned
         directory = "imgs/"
 
         return_image = ""
@@ -76,13 +59,13 @@ class Twitter_main():
         for tweet in response: # TODO: make it check from the last tweet instead, so -1 or something, so if multiple tweets it can still work )
             
             if str(tweet.id) == str(last_tweet_id):
-                print("No new tweet(top)")
+                # print("No new tweet(top)")
                 return None
-            print(last_tweet_id)
-            print("-------------------")
-            print(tweet.id)
-            print("-------------------")
-            print(str(tweet.id) == last_tweet_id)
+            # print(last_tweet_id)
+            # print("-------------------")
+            # print(tweet.id)
+            # print("-------------------")
+            # print(str(tweet.id) == last_tweet_id)
             # print(tweet.text)
             # get likes
             return_favourite_count = tweet.favorite_count
@@ -91,13 +74,13 @@ class Twitter_main():
             # Check if the tweet has any images
             if 'media' in tweet.entities:
                 if tweet.id == last_tweet_id:
-                    print("No new tweet(bot)")
+                    # print("No new tweet(bot)")
                     return None
                 for index, image in enumerate(tweet.entities['media']):
                     # Print the image URL
-                    print(image['media_url'])
+                    # print(image['media_url'])
                     return_image = image['media_url']
-                print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
+                # print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
                 date_posted = str(tweet.created_at)
 
@@ -105,66 +88,3 @@ class Twitter_main():
                 return return_image, return_url, return_favourite_count, str(tweet.id), date_posted
             
         return None
-
-    # async def get_art(self,user_id, last_tweet_id):
-        
-    #     # Get User's Tweets
-
-    #     # This endpoint/method returns Tweets composed by a single user, specified by
-    #     # the requested user ID
-
-    #     # user_id = "askziye"
-
-    #     # response = client.get_users_tweets(user_id,max_results=1)
-
-    #     response = self.api.user_timeline(screen_name=user_id, count=30, exclude_replies=True, include_rts=False)
-    #     # exclude_replies
-    #     # |exclude_replies|
-    #     # include_rts
-
-    #     # use stream lsitener instead
-
-    #     # By default, only the ID and text fields of each Tweet will be returned
-    #     directory = "imgs/"
-
-    #     return_image = ""
-    #     return_url = ""
-    #     return_favourite_count = 0
-    #     for tweet in response:
-    #         if str(tweet.id) == last_tweet_id:
-    #             print("No new tweet")
-    #             return None
-    #         print(last_tweet_id)
-    #         print("-------------------")
-    #         print(tweet.id)
-    #         print("-------------------")
-    #         print(str(tweet.id) == last_tweet_id)
-    #         # print(tweet.text)
-    #         # get likes
-    #         return_favourite_count = tweet.favorite_count
-
-            
-    #         # Check if the tweet has any images
-    #         if 'media' in tweet.entities:
-    #             if tweet.id == last_tweet_id:
-    #                 print("No new tweet")
-    #                 return None
-    #             for index, image in enumerate(tweet.entities['media']):
-    #                 # Print the image URL
-    #                 print(image['media_url'])
-    #                 return_image = image['media_url']
-    #                 # Retrieve the image data using the requests library
-    #                 image_data = urllib.request.urlopen(image['media_url']).read()
-    #                 # Save the image data to a file
-    #                 filename = f"{tweet.id}_image{index+1}.jpg"
-    #                 with open(directory + filename, 'wb') as f:
-    #                     f.write(image_data)
-    #                 # Print the path to the saved file
-    #                 print(f"Saved image to {os.path.abspath(directory + filename)}")
-    #             print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
-    #             return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
-    #             break
-            
-    #     return return_image, return_url, return_favourite_count, tweet.id
-
-# ")
