@@ -16,11 +16,9 @@ class Info(commands.Cog):
         self.bot = bot
 
 
-    # say something when loaded
     @commands.Cog.listener()
     async def on_ready(self):
         print("Info cog loaded!")
-    # when there are more commands add here
 
     @commands.slash_command(name="help",description="Displays all avaliable commands")  
     async def help(self, ctx: discord.ApplicationContext):# 0x3083e3 is the color of the embed
@@ -84,39 +82,6 @@ class Info(commands.Cog):
         embed.set_author(name="yoneyamai", icon_url="https://pbs.twimg.com/profile_images/1155680462464942081/JBCvjutU_400x400.jpg")
         await ctx.respond(embed=embed)
 
-    # @commands.slash_command(name="set", description="Set the default channel to send updates to")
-    # async def set(self, ctx):
-    #     # set the default channel to send updates to
-    #     str(ctx.guild_id)
-    #     str(ctx.channel_id)
-    #     # firebase instance and set the channel id implement when i am not sleepy g9
-    #     pass
-    # @commands.slash_command(name="testing",description="testing command from cog")  # Not passing in guild_ids creates a global slash command.
-    # async def hiqwe(self, ctx: discord.ApplicationContext, inputs: discord.Option(str, "What do you want to say?")):
-    #     await ctx.respond("Hi, this is a global slash command from a cog!"+inputs)
-    #     test = Test()
-    #     await ctx.respond(test.testing())
 
-
-
-    # @commands.slash_command(name="test2",description="testing command from cog")  # Not passing in guild_ids creates a global slash command.
-    # @option("name", description="Enter your name")
-    # @option("gender", description="Choose your gender", choices=["Male", "Female", "Otherasd"])
-    # async def hello(
-    #     self,
-    #     ctx: discord.ApplicationContext,
-    #     name: str,
-    #     gender: str,
-    #     age: int,
-    # ):
-    #     await ctx.respond(
-    #         f"Hello {name}! Your gender is {gender} and you are {age} years old."
-    #     )
 def setup(bot):
     bot.add_cog(Info(bot))
-
-
-# The basic bot instance in a separate file should look something like this:
-# bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
-# bot.load_extension("slash_cog")
-# bot.run("TOKEN")

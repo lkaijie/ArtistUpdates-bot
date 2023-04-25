@@ -5,11 +5,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import asyncio
 
-# Add the root directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils import get_tweets
-
-# Import the config module from the root directory
 import config
 
 
@@ -23,21 +20,13 @@ class FirestoreDB():
         self.db = firestore.client()
         self.twitter_main = get_tweets.Twitter_main()
 
-
-    async def get_collections(self):
-        collections = self.db.collections()
-        for coll in collections:
-            print(coll.id)
-        return collections
     
     async def add_guild(self, guild_id, guild_name, channel_id):
         '''Adds a guild to the database'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         if guild_ref.get().exists:
-            # print("Guild already exists")
             return False
         else:
-            # print("Guild does not exist")
             artist_ref = guild_ref.collection("twitter_list")
             artist_ref2 = guild_ref.collection("pixiv_list")
             guild_ref.set({
@@ -52,7 +41,7 @@ class FirestoreDB():
         guilds = self.db.collection("Guilds")
         guild_ids = []
         for guild in guilds.stream():
-            print(f'{guild.id} => {guild.to_dict()}')
+            # print(f'{guild.id} => {guild.to_dict()}')
             guild_ids.append(guild.id)
         return guild_ids
 
@@ -164,10 +153,6 @@ async def main():
     await testing.add_twitter_artist("WUSEqWOxrIJSmLH9zV0A", "genshinimpact") # alreadyt exists
     await testing.add_twitter_artist("WUSEqWOxrIJSmLH9zV0A", "KuguiEMA") # does not exist
     guilds = await testing.get_guilds()
-    print("List of guilds")
-    # for guild in guilds.stream():
-    #     print(guild.id)
-    #     print(guild.to_dict())
     for x in guilds:
         print(x)    
 

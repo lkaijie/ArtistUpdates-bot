@@ -23,7 +23,6 @@ class art_main(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("main cog loaded!")
-    # when there are more commands add here
 
 
 
@@ -55,7 +54,6 @@ class art_main(commands.Cog):
     async def set(self, ctx):
         # set the default channel to send updates to
         await self.db.set_channel(str(ctx.guild_id), str(ctx.channel_id))
-        #  print channel name
         await ctx.respond(f"Set default channel to {ctx.channel.name}")
         
 
@@ -71,14 +69,9 @@ class art_main(commands.Cog):
         username: str,
     ):
         pfp = await self.db.add_twitter_artist(str(ctx.guild.id), str(username))
-        # await ctx.respond(
-        #     f"Added {username} to database."
-        # )
-        print(pfp)
         embed = discord.Embed(color=0xf1c232)
         embed.set_author(name=f"Added @{username} to database.", url=f"https://twitter.com/{username}",icon_url=pfp)
         await ctx.respond(embed=embed)
-        # change this to embed msg with user profile pic and name with clickable link to twitter
 
     @commands.slash_command(name="delete",description="remove twitter user")
     @option("username", description="Example: @(askziye)")
@@ -94,9 +87,3 @@ class art_main(commands.Cog):
 
 def setup(bot):
     bot.add_cog(art_main(bot))
-
-
-# The basic bot instance in a separate file should look something like this:
-# bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
-# bot.load_extension("slash_cog")
-# bot.run("TOKEN")
