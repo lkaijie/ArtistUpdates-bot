@@ -71,7 +71,10 @@ class art_main(commands.Cog):
         pfp = await self.db.add_twitter_artist(str(ctx.guild.id), str(username))
         embed = discord.Embed(color=0xf1c232)
         embed.set_author(name=f"Added @{username} to database.", url=f"https://twitter.com/{username}",icon_url=pfp)
-        await ctx.respond(embed=embed)
+        try:
+            await ctx.respond(embed=embed)
+        except:
+            await ctx.respond("Something went wrong. Check if the user exists.")
 
     @commands.slash_command(name="delete",description="remove twitter user")
     @option("username", description="Example: @(askziye)")

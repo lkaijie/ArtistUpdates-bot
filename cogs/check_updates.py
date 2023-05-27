@@ -76,33 +76,6 @@ class check_updates(commands.Cog):
                         print("error sending embed(likely bot not setuped)")
                         print(e)
 
-
-
-
-
-    # async def update_loop(self):
-    #     guilds = await self.db.get_guilds()
-    #     for guild in guilds:
-    #         channel = self.db.get_channel(guild)
-    #         artists = await self.db.get_twitter_list(guild)
-    #         await channel.send("Checking for new art")
-    #         for artist in artists:
-    #             last_work = await self.db.get_last_work(guild, artist)
-    #             last_work_id = last_work["last_tweet_id"]
-    #             new_work = await self.twitter_main.get_art(artist, last_work_id)
-    #             if new_work != None:
-    #                 # send_channel = self.bot.get_channel(channel)
-    #                 img = new_work[0]
-    #                 embed = discord.Embed(title="twitter link",url=new_work[1], color=0x00ff00)
-    #                 embed.description = "likes: "+ str(new_work[2])
-    #                 await channel.send(embed=embed)
-    #                 await channel.send(new_work[0])
-
-
-                
-    # send a msg to the channel every 60 seconds
-
-
 def setup(bot):
     bot.add_cog(check_updates(bot))
 
