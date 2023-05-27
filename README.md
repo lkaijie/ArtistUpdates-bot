@@ -12,7 +12,7 @@ ArtistUpdates is a simple bot created to keep track and notify users when a trac
 
 Created using Python and Firebase, mainly utilizing the tweepy and pycord libraries
 
-### The bot can be invited [here](https://discord.com/api/oauth2/authorize?client_id=1094845575368806432&permissions=139586750528&scope=bot%20applications.commands)
+### The bot can be invited [here (OLD version)](https://discord.com/api/oauth2/authorize?client_id=1094845575368806432&permissions=139586750528&scope=bot%20applications.commands)
 
 ## Example output
 ![image](https://user-images.githubusercontent.com/94023052/233753404-8a4ddc9e-b5f6-49f1-89d2-bb69a1a26524.png)
