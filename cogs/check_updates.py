@@ -10,6 +10,7 @@ from utils.firestoreDB import FirestoreDB
 from utils import get_tweets
 
 class check_updates(commands.Cog):
+    '''Cog for checking for new art TODO: seperate the update loop from the bot at somepoint'''
     def __init__(self, bot):
         self.bot = bot
         # self.db = FirestoreDB()
@@ -78,9 +79,3 @@ class check_updates(commands.Cog):
 
 def setup(bot):
     bot.add_cog(check_updates(bot))
-
-
-# The basic bot instance in a separate file should look something like this:
-# bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
-# bot.load_extension("slash_cog")
-# bot.run("TOKEN")

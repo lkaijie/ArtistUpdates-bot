@@ -26,11 +26,10 @@ class Twitter_main():
         self.api = tweepy.API(self.auth)
         
     async def get_last_id(self,user_id) -> str:
-        
+        '''Returns the id of the last tweet with an image, or None if there are no images in the last 30 tweets'''
         response = self.api.user_timeline(screen_name=user_id, count=30, exclude_replies=True, include_rts=False)
         for tweet in response:
             return_id = ""
-            
             for tweet in response:
                 if 'media' in tweet.entities:
                     return_id = str(tweet.id)
@@ -41,13 +40,13 @@ class Twitter_main():
         pass
         
     async def get_pfp(self, user_id):
+        '''Returns the url of the profile picture'''
         pfp_url = self.api.get_user(screen_name=user_id).profile_image_url
         return pfp_url
 
     async def get_art(self,user_id, last_tweet_id):
+        '''Returns the url of the image, the url of the tweet, the favourite count, the tweet id, and the date posted'''
         response = self.api.user_timeline(screen_name=user_id, count=30, exclude_replies=True, include_rts=False)
-        # print("------------------------------------------------------------------")
-        # print("------------------------------------------------------------------")
         if response == []:
             print("No tweets")
             return None
@@ -59,32 +58,19 @@ class Twitter_main():
         for tweet in response: # TODO: make it check from the last tweet instead, so -1 or something, so if multiple tweets it can still work )
             
             if str(tweet.id) == str(last_tweet_id):
-                # print("No new tweet(top)")
                 return None
-            # print(last_tweet_id)
-            # print("-------------------")
-            # print(tweet.id)
-            # print("-------------------")
-            # print(str(tweet.id) == last_tweet_id)
-            # print(tweet.text)
-            # get likes
             return_favourite_count = tweet.favorite_count
 
             
             # Check if the tweet has any images
             if 'media' in tweet.entities:
                 if tweet.id == last_tweet_id:
-                    # print("No new tweet(bot)")
                     return None
                 for index, image in enumerate(tweet.entities['media']):
-                    # Print the image URL
-                    # print(image['media_url'])
                     return_image = image['media_url']
-                # print(f"Original tweet URL: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
                 return_url = f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"
                 date_posted = str(tweet.created_at)
 
-            
                 return return_image, return_url, return_favourite_count, str(tweet.id), date_posted
             
         return None

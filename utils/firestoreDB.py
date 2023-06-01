@@ -22,7 +22,7 @@ class FirestoreDB():
 
     
     async def add_guild(self, guild_id, guild_name, channel_id):
-        '''Adds a guild to the database'''
+        '''Adds a guild to the database returns true if successful and false if not'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         if guild_ref.get().exists:
             return False
@@ -38,14 +38,15 @@ class FirestoreDB():
             return True
     
     async def get_guilds(self):
+        '''Returns a list of guild ids as strings'''
         guilds = self.db.collection("Guilds")
         guild_ids = []
         for guild in guilds.stream():
-            # print(f'{guild.id} => {guild.to_dict()}')
             guild_ids.append(guild.id)
         return guild_ids
 
     async def get_channel(self, guild_id):
+        '''Returns the channel that the bot will send updates to as a `string `or None if it does not exist'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         guild_doc = guild_ref.get()
         if guild_doc.exists:
@@ -55,7 +56,7 @@ class FirestoreDB():
 
     
     async def get_twitter_list(self, guild_id) -> list:
-        '''Returns a list of tracked twitter artists'''
+        '''Returns a list of tracked twitter artists as a list of strings'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         guild_doc = guild_ref.get()
         return_list = []
@@ -69,7 +70,7 @@ class FirestoreDB():
         return return_list
     
     async def get_pfp(self, guild_id, artist_id) -> str:
-        '''Returns the profile picture of the artist'''
+        '''Returns the profile picture of the artist as a string url'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         artist_ref = guild_ref.collection("twitter_list").document(artist_id)
         artist_doc = artist_ref.get()
@@ -100,12 +101,12 @@ class FirestoreDB():
             print("Artist does not exist")
 
 
-    async def add_twitter_artist(self, guild_id, artist_id):
+    async def add_twitter_artist(self, guild_id, artist_id) -> str: # pfp_url
         '''adds a twitter artist to the database with the last tweet id'''
         guild_ref = self.db.collection("Guilds").document(guild_id)
         artist_ref = guild_ref.collection("twitter_list")
         doc_ref = artist_ref.document(artist_id)
-        # Guilds -> ybugqgybewiwe -> twitter_list -> askziye
+        # database Schema: Guilds -> ybugqgybewiwe -> twitter_list -> askziye
         doc = doc_ref.get()
         if doc.exists:
             print("Document exists")

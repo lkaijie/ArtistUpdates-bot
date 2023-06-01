@@ -15,8 +15,7 @@ from utils import get_tweets
 class art_main(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        # self.db = FirestoreDB()
-        self.db = None
+        self.db = None # set in bot.py
 
 
     # say something when loaded
@@ -28,6 +27,7 @@ class art_main(commands.Cog):
 
     @commands.slash_command(name="art_list",description="Shows list of tracked users")
     async def art_list(self, ctx: discord.ApplicationContext):
+        '''Shows list of tracked users'''
 
         tracked_users = await self.db.get_twitter_list(str(ctx.guild.id))
         embed = discord.Embed(title="Tracked Twitter Users", color=0xf1c232, 
@@ -38,10 +38,11 @@ class art_main(commands.Cog):
             embed.add_field(name=f"@{user}", value=f"https://twitter.com/{user}", inline=False)
         await ctx.respond(embed=embed)  
 
-        # pagination setup TODO
+        # pagination setup TODO: add more pages when users > 25
 
     @commands.slash_command(name="setup",description="Setup and add Server to database")
     async def setup(self, ctx: discord.ApplicationContext):
+        '''Setups the bot for the server'''
         value = await self.db.add_guild(str(ctx.guild.id), ctx.guild.name, ctx.channel_id)
         if value == True:
             await ctx.respond("Setting up server")
@@ -52,7 +53,7 @@ class art_main(commands.Cog):
     
     @commands.slash_command(name="set", description="Set the default channel to send updates to")
     async def set(self, ctx):
-        # set the default channel to send updates to
+        '''Set the default channel to send updates to'''
         await self.db.set_channel(str(ctx.guild_id), str(ctx.channel_id))
         await ctx.respond(f"Set default channel to {ctx.channel.name}")
         
@@ -60,7 +61,6 @@ class art_main(commands.Cog):
 
 
 
-    # just a test command
     @commands.slash_command(name="add",description="add twitter user")
     @option("username", description="Example: @(askziye)")
     async def add(
@@ -68,6 +68,7 @@ class art_main(commands.Cog):
         ctx: discord.ApplicationContext,
         username: str,
     ):
+        '''Adds a twitter user to track'''
         pfp = await self.db.add_twitter_artist(str(ctx.guild.id), str(username))
         embed = discord.Embed(color=0xf1c232)
         embed.set_author(name=f"Added @{username} to database.", url=f"https://twitter.com/{username}",icon_url=pfp)
@@ -83,6 +84,7 @@ class art_main(commands.Cog):
         ctx: discord.ApplicationContext,
         username: str,
     ):
+        '''Removes a twitter user from the database'''
         await self.db.delete_twitter_artist(str(ctx.guild.id), str(username))
         await ctx.respond(
             f"Deleted {username} from database."

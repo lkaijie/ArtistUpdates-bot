@@ -13,21 +13,16 @@ bot = discord.Bot(intents=intents)
 db = FirestoreDB()
 
 
-bot.load_extension("cogs.info")  # Load info cog
-bot.load_extension("cogs.twitter_main")  # Load twitter cog
-bot.load_extension("cogs.art_main")  # Load art cog
-bot.load_extension("cogs.check_updates")  # Load test cog
+
+for file in os.listdir("./cogs"):
+    if file.endswith(".py"):
+        name = file[:-3]
+        bot.load_extension(f"cogs.{name}")
+
 art_main = bot.get_cog("art_main")
 art_main.db = db
 check_updates = bot.get_cog("check_updates")
 check_updates.db = db
-
-# adds all cogs in cogs folder (uncomment when ready)
-# for file in os.listdir("./cogs"):
-#     if file.endswith(".py"):
-#         name = file[:-3]
-#         bot.load_extension(f"cogs.{name}")
-
 
 
 
@@ -39,6 +34,7 @@ async def on_ready():
 @bot.slash_command()
 async def joined(ctx: discord.ApplicationContext, member: discord.Member = None):
     # Setting a default value for the member parameter makes it optional ^
+    '''Tells you when a member joined.'''
     user = member or ctx.author
     await ctx.respond(
         f"{user.name} joined at {discord.utils.format_dt(user.joined_at)}"
@@ -46,15 +42,10 @@ async def joined(ctx: discord.ApplicationContext, member: discord.Member = None)
 
 @bot.slash_command()
 async def bot_joined(ctx: discord.ApplicationContext):
+    '''Tells you when the bot joined.'''
     await ctx.respond(
         f"I joined at {discord.utils.format_dt(bot.user.joined_at)}"
     )
 
 
-
-
-
-
-
-# To learn how to add descriptions and choices to options, check slash_options.py
 bot.run(config.client_discord_token)
