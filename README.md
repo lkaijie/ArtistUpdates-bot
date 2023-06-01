@@ -15,7 +15,7 @@ Created using Python and Firebase, mainly utilizing the tweepy and pycord librar
 ### The bot can be invited [here (OLD version)](https://discord.com/api/oauth2/authorize?client_id=1094845575368806432&permissions=139586750528&scope=bot%20applications.commands)
 
 ## Example output
-![image](https://user-images.githubusercontent.com/94023052/233753404-8a4ddc9e-b5f6-49f1-89d2-bb69a1a26524.png)
+![image](https://github.com/lkaijie/ArtistUpdates-bot/assets/94023052/301eac9c-212f-4b77-bcd9-463c30b7df0d)
 
 
 # Why?
@@ -23,7 +23,7 @@ Most twitter artist retweet and reply to a bunch of unrelated content and also a
 
 
 # Upcoming Features
-- Migrating to postgresql from Firebase 
+- Seperate update checking and bot logic
 - Adding pixiv and possibly weibo tracking 
 - Port following list into tracking list
 - Add tracking for users via DMs instead of only servers
