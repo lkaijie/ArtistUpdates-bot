@@ -28,8 +28,10 @@ class Info(commands.Cog):
                 `/info`: Displays basic information about this bot.
                 `/help`: Shows this message.
                 `/ping`: Pong! Displays the ping.
-                `/invite`: Displays bot invite link.
-                `/alert`: Displays bot announcements.
+                `/art_list`: Displays all the artists you are tracking.
+                `/add`: Adds an artist to the list of artists you are tracking.
+                `/delete`: Deletes an artist from the list of artists you are tracking.
+                `/set`: Sets the default channel to send updates to.
             """)
         embed.set_author(name="Qbot", icon_url=self.bot.user.avatar.url)
         embed.add_field(name="__Manga__", 
@@ -64,24 +66,6 @@ class Info(commands.Cog):
         )
         botinfo.set_author(name="ArtistUpdate-Bot", icon_url=self.bot.user.avatar.url)
         await ctx.respond(embed=botinfo)
-
-    @commands.slash_command(name="stats", description="Displays stats")
-    async def stats(self, ctx):
-        # guess get total artits tracked and also unique artist tracked
-        pass
-
-    # @commands.slash_command(name="testing1", description="Pong! Displays the ping")
-    # async def ping(self, ctx):
-    #     embed = discord.Embed(title="Title", description="Description", color=0x0099ff)
-
-    #     # add first field with author icon
-    #     embed.add_field(name="Field 1 Name", value="Field 1 Value", inline=False)
-    #     embed.set_author(name="askziye", icon_url="https://pbs.twimg.com/profile_images/1232862373209231361/XqqCEzXQ_400x400.jpg")
-
-    #     # add second field with author icon
-    #     embed.add_field(name="Field 2 Name", value="https://pbs.twimg.com/profile_images/1155680462464942081/JBCvjutU_400x400.jpg", inline=False)
-    #     embed.set_author(name="yoneyamai", icon_url="https://pbs.twimg.com/profile_images/1155680462464942081/JBCvjutU_400x400.jpg")
-    #     await ctx.respond(embed=embed)
 
 
 def setup(bot):
