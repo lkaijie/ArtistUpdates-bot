@@ -58,5 +58,3 @@ firebase_config = {
 3. Run bot.py
 
 # Additional Context
-- Code Refactor incoming
-- Created using pycord, utilizing the twitter API
