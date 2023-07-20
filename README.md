@@ -4,7 +4,8 @@
         <img src="https://cdn.discordapp.com/avatars/1094845575368806432/3d1eb05f18c16cf6fb7370b27eea47ab.webp?size=128">
         <h2>ArtistUpdates-bot</h3>
         <span>A Discord bot for keeping track of your favourite artists</span>
-        <div style="margin:20px">
+    </div>
+    <div align="center"style="margin:20px">
             <a href="https://www.python.org/">
                 <img src="https://img.shields.io/badge/Python-3.11.1-blue?logo=python&logoColor=white" alt="Python 3.11.1">
             </a>
@@ -17,7 +18,6 @@
             <!-- firebase -->
             <img src="https://img.shields.io/badge/Firebase-8.6.0-blue?logo=firebase&logoColor=white" alt="Firebase 8.6.0">
         </div>
-    </div>
 </br>
 
 # About
