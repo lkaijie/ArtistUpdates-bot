@@ -61,7 +61,6 @@ class Twitter_main():
                 return None
             return_favourite_count = tweet.favorite_count
 
-            
             # Check if the tweet has any images
             if 'media' in tweet.entities:
                 if tweet.id == last_tweet_id:
