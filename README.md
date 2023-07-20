@@ -5,6 +5,7 @@
         <h2>ArtistUpdates-bot</h3>
         <span>A Discord bot for keeping track of your favourite artists</span>
     </div>
+</br>
     <div align="center"style="margin-top:30px">
             <a href="https://www.python.org/">
                 <img src="https://img.shields.io/badge/Python-3.11.1-blue?logo=python&logoColor=white" alt="Python 3.11.1">
